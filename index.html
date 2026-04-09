@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -214,4 +215,222 @@
   </script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome - Smart Farming</title>
+  <style>
+    :root {
+      --glass-bg: rgba(255, 255, 255, 0.12);
+      --glass-border: rgba(255, 255, 255, 0.1);
+      --accent-gold: #b5a03d; /* Matches the golden text in your image */
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      /* Deep gradient matching your screenshot */
+      background: radial-gradient(circle at top left, #1a323d, #632626);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      padding: 50px 40px;
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .icon-header {
+      font-size: 45px;
+      margin-bottom: 15px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin: 0 0 10px 0;
+      color: #ffffff;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      color: var(--accent-gold);
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.5;
+      margin-bottom: 35px;
+    }
+
+    /* Better Dropdown UI */
+    .dropdown-container {
+      position: relative;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .selected-option {
+      background: #f8f9fa;
+      color: #333;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      position: relative;
+      font-weight: 500;
+    }
+
+    .selected-option::after {
+      content: '▼';
+      position: absolute;
+      right: 20px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .flag-icon {
+      margin-right: 12px;
+      font-style: normal;
+      font-weight: bold;
+      color: #555;
+    }
+
+    /* Hidden standard select for form submission */
+    #langSelect {
+      display: none;
+    }
+
+    /* Continue Button - Precise Glass Style */
+    #continueBtn {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 18px;
+      color: white;
+      font-size: 18px;
+      font-weight: 600;
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #continueBtn:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    #continueBtn:active {
+      transform: translateY(0);
+    }
+
+    /* Simple Dropdown Logic Styling */
+    .options-list {
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      display: none;
+      z-index: 10;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .option-item {
+      padding: 15px 20px;
+      color: #333;
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+    }
+
+    .option-item:hover {
+      background: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <span class="icon-header">🌾 👨‍🌾</span>
+    <h1>Welcome Farmer</h1>
+    <p class="subtitle">
+      Choose your preferred language to view<br>crop details
+    </p>
+
+    <div class="dropdown-container">
+      <div class="selected-option" id="customTrigger">
+        <span class="flag-icon">GB</span> English
+      </div>
+      <div class="options-list" id="customOptions">
+        <div class="option-item" data-value="en"><span class="flag-icon">GB</span> English</div>
+        <div class="option-item" data-value="te"><span class="flag-icon">IN</span> తెలుగు</div>
+        <div class="option-item" data-value="hi"><span class="flag-icon">IN</span> हिन्दी</div>
+      </div>
+    </div>
+
+    <button id="continueBtn">
+      Continue &rarr;
+    </button>
+  </div>
+
+  <script>
+    const trigger = document.getElementById('customTrigger');
+    const optionsList = document.getElementById('customOptions');
+    const options = document.querySelectorAll('.option-item');
+    let selectedLanguage = "en";
+
+    // Toggle Dropdown
+    trigger.addEventListener('click', () => {
+      optionsList.style.display = optionsList.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Select Language
+    options.forEach(option => {
+      option.addEventListener('click', () => {
+        const val = option.getAttribute('data-value');
+        const text = option.innerText;
+        
+        trigger.innerHTML = text;
+        selectedLanguage = val;
+        optionsList.style.display = 'none';
+      });
+    });
+
+    // Close when clicking outside
+    window.addEventListener('click', (e) => {
+      if (!trigger.contains(e.target)) {
+        optionsList.style.display = 'none';
+      }
+    });
+
+    // Continue Logic
+    document.getElementById("continueBtn").addEventListener("click", () => {
+      localStorage.setItem("farmerLanguage", selectedLanguage);
+      window.location.href = "dashboard.html";
+    });
+  </script>
+
+</body>
+>>>>>>> 463a54d7bf3c27567de0c91d94fc19aacc17c883
 </html>
